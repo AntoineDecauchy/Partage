@@ -28,7 +28,7 @@ size_t	checkn(char *src)
 	return (0);
 }
 
-char	*end(char **tmp)
+char	*end(char **tmp, char **buffer)
 {
 	char	*line;
 
@@ -37,9 +37,11 @@ char	*end(char **tmp)
 		line = ft_strndup(*tmp, ft_strlen(*tmp));
 		free(*tmp);
 		*tmp = NULL;
+		free(*buffer);
 		return (line);
 	}
 	free(*tmp);
+	free(*buffer);
 	*tmp = NULL;
 	return (NULL);
 }
@@ -47,24 +49,28 @@ char	*end(char **tmp)
 char	*get_next_line(int fd)
 {
 	int			rd;
-	char		buffer[BUFFER_SIZE + 1];
+	char		*buffer;
 	char		*line;
 	char		*ntmp;
 	static char	*tmp = NULL;
 
+	buffer = malloc(BUFFER_SIZE + 1);
+	if (!buffer)
+		return (NULL);
 	if (!tmp)
 		tmp = ft_strndup("", 1);
 	while (!checkn(tmp))
 	{
 		rd = read(fd, buffer, BUFFER_SIZE);
 		if (rd <= 0)
-			return (end(&tmp));
+			return (end(&tmp, &buffer));
 		buffer[rd] = '\0';
 		tmp = ft_strjoin(tmp, buffer);
 	}
 	line = ft_strndup(tmp, (checkn(tmp)));
 	ntmp = ft_strndup((tmp + checkn(tmp)), ft_strlen(tmp + checkn(tmp)));
-	free (tmp);
+	free(tmp);
 	tmp = ntmp;
+	free(buffer);
 	return (line);
 }

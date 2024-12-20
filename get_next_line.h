@@ -24,7 +24,7 @@
 /*-----get_next_line.c-----*/
 
 size_t	checkn(char *src);
-char	*end(char **tmp);
+char	*end(char **tmp, char **buffer);
 char	*get_next_line(int fd);
 
 /*-----get_next_line_utils.c-----*/
