@@ -1,0 +1,18 @@
+netdata : http://172.17.0.1:19999/
+wordpress : http://localhost:8080/
+Pas d'interface graphique : ls /usr/bin/*session
+UFW : sudo ufw status && sudo service ufw status
+SSH : sudo service ssh status
+OS : uname --kernel-version
+User and Group : getent group sudo user42
+Add user : sudo adduser name_user
+Add group : sudo addgroup evaluating
+Add user to Group : sudo adduser name_user evaluating
+Chech hostname : hostname
+Change hostname : sudo vi /etc/hostname>sudo vi /etc/hosts>sudo reboot
+Partiton : lsblk
+Check sudo : which sudo
+Sudo rule : cat /etc/sudoers.d/sudo_config
+Sudo logs : cat /var/log/sudo/sudo_config 
+Check ufw : dpkg -s ufw sudo service ufw status
+contrab sudo crontab -u root -e
